@@ -1,32 +1,23 @@
-const http = require("http");
-// const User = require("./User");
+const express = require("express");
+const app = express();
+const PORT_NUM = 3001;
 
-http.createServer(handleRequest).listen(3333);
+app.get("/", handleRequest);
+app.get("/login", handleRequest);
+app.get("/users/:name/", handleRequest);
+
+app.listen(PORT_NUM);
+print("server is listening on port " + PORT_NUM);
 
 function handleRequest(request, response) {
   if (request.url == "/") {
-    response.write("Landing Page");
+    response.send("Landing Page");
+  } else if (request.url == "/login") {
+    response.send("Login Page");
   } else {
-    response.write(request.url);
+    print(request.params);
   }
-  response.end();
 }
-// const math = require("./math");
-// const EventEmitter = require("events");
-
-// print(math.sum(2, 4));
-// print(math.PI);
-// var mathobj = new math.MathObject("my math obj");
-
-// var eventEmitter = new EventEmitter();
-
-// eventEmitter.on("app", arg => {
-//   print("event emitted with " + arg.name);
-// });
-
-// // setTimeout(() => {
-// eventEmitter.emit("app", mathobj);
-// // }, 1500);
 
 function print(msg) {
   console.log(msg);
