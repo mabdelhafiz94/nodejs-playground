@@ -1,11 +1,16 @@
 const express = require("express");
+// const path = require("path");
+const bodyParser = require("body-parser");
 const app = express();
 const PORT_NUM = 3000;
+
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", handleHomeRequest);
 app.get("/login", handleLoginRequest);
 app.get("/profile/:id", handleProfileRequest);
-app.get("/reg", handleRegRequest);
+app.post("/reg", handleRegRequest);
 
 app.listen(PORT_NUM);
 print("server is listening on port " + PORT_NUM);
@@ -23,7 +28,7 @@ function handleProfileRequest(request, response) {
 }
 
 function handleRegRequest(request, response) {
-  response.send(request.query);
+  response.send(request.body);
 }
 
 function print(msg) {
