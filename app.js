@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT_NUM = 3001;
+const PORT_NUM = 3000;
 
 app.get("/", handleHomeRequest);
 app.get("/login", handleLoginRequest);
